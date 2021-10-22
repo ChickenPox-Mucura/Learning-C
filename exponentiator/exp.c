@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 float exponentiation(float, float);
 
@@ -15,6 +16,8 @@ int main(void)
 	res = exponentiation(base, exp);
 	
 	printf("result: %.3f\n", res);
+	
+	return EXIT_SUCCESS;
 }
 
 float exponentiation(float base, float exp)
