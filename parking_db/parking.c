@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 #define MAX 1024
 
@@ -21,12 +22,13 @@ int main(void) {
 
 void parking__lot__data(struct v_data machine) {
 	
-	FILE *fp;
+	FILE *fp = NULL;
 	
 	/* Class */
 	printf("Enter vehicle class:\n-->\t");
 	fgets(machine.class, MAX, stdin);
-	fp = which_file(machine.class, fp);
+	if((fp = which_file(machine.class, fp)) == NULL)
+		exit(1);
 	fprintf(fp, "Class: %s", machine.class);
 	/* Plate */
 	printf("Enter vehicle plate:\n-->\t");
@@ -42,7 +44,7 @@ void parking__lot__data(struct v_data machine) {
 
  FILE * which_file(char spec[], FILE *file_pointer) {
 	
-	switch(spec[0]) {
+	switch(tolower(spec[0])) {
 	case 'c':
 		file_pointer = fopen("car_data", "a");
 		break;
@@ -57,7 +59,7 @@ void parking__lot__data(struct v_data machine) {
 		break;
 	default:
 		printf("Error: invalid vehicle class!\n");
-		break;
+		return NULL;
 	}
 
 	return file_pointer;
