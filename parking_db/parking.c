@@ -3,24 +3,24 @@
 #include <stdlib.h>
 #define MAX 1024
 
-struct v_data {
+typedef struct {
 	char class[MAX];
 	char plate[MAX];
 	char color[MAX];
 } vehicle;
 
-void parking__lot__data(struct v_data);
-FILE * which_file(char spec[], FILE * fp);
+void parking__lot__data(vehicle);
+FILE * which_file(char [], FILE *);
 
 int main(void) {
 	
-	extern struct v_data vehicle;
-	parking__lot__data(vehicle);
+	vehicle veh;
+	parking__lot__data(veh);
 
 	return EXIT_SUCCESS;
 }
 
-void parking__lot__data(struct v_data machine) {
+void parking__lot__data(vehicle machine) {
 	
 	FILE *fp = NULL;
 	
