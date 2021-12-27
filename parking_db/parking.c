@@ -25,10 +25,12 @@ void parking__lot__data(vehicle machine) {
 	FILE *fp = NULL;
 	
 	/* Class */
-	printf("Enter vehicle class:\n-->\t");
-	fgets(machine.class, MAX, stdin);
-	if((fp = which_file(machine.class, fp)) == NULL)
-		exit(1);
+	while(fp == NULL) {
+		printf("Enter vehicle class:\n-->\t");
+		fgets(machine.class, MAX, stdin);
+		if((fp = which_file(machine.class, fp)) == NULL)
+			;
+		}	
 	fprintf(fp, "Class: %s", machine.class);
 	/* Plate */
 	printf("Enter vehicle plate:\n-->\t");
